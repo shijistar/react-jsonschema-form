@@ -49,6 +49,7 @@ export default function RangeWidget<T = any, S extends StrictRJSFSchema = RJSFSc
     placeholder,
     onBlur: !readonly ? handleBlur : undefined,
     onFocus: !readonly ? handleFocus : undefined,
+    ...options,
   };
 
   return (

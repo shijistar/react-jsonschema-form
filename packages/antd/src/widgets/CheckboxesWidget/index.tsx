@@ -40,6 +40,7 @@ export default function CheckboxesWidget<
     id,
     onBlur: !readonly ? handleBlur : undefined,
     onFocus: !readonly ? handleFocus : undefined,
+    ...options,
   };
 
   const selectedIndexes = enumOptionsIndexForValue<S>(value, enumOptions, true) as string[];

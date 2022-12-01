@@ -40,11 +40,11 @@ export default function ArrayFieldItemTemplate<
   const { rowGutter = 24, toolbarAlign = 'top' } = registry.formContext;
 
   return (
-    <Row align={toolbarAlign} key={`array-item-${index}`} gutter={rowGutter}>
+    <Row align={toolbarAlign} key={`array-item-${index}`} gutter={rowGutter} className='array-item-row'>
       <Col flex='1'>{children}</Col>
 
       {hasToolbar && (
-        <Col flex='192px'>
+        <Col flex='192px' className='array-item-toolbar'>
           <Button.Group style={BTN_GRP_STYLE}>
             {(hasMoveUp || hasMoveDown) && (
               <MoveUpButton

@@ -20,7 +20,7 @@ export default function CheckboxWidget<
   S extends StrictRJSFSchema = RJSFSchema,
   F extends FormContextType = any
 >(props: WidgetProps<T, S, F>) {
-  const { autofocus, disabled, formContext, id, label, hideLabel, onBlur, onChange, onFocus, readonly, value } = props;
+  const { autofocus, disabled, formContext, id, label, hideLabel, onBlur, onChange, onFocus, readonly, value, options } = props;
   const { readonlyAsDisabled = true } = formContext as GenericObjectType;
 
   const handleChange = ({ target }: CheckboxChangeEvent) => onChange(target.checked);
@@ -34,6 +34,7 @@ export default function CheckboxWidget<
   const extraProps = {
     onBlur: !readonly ? handleBlur : undefined,
     onFocus: !readonly ? handleFocus : undefined,
+    ...options,
   };
   return (
     <Checkbox

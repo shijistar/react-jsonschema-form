@@ -64,6 +64,7 @@ export default function SelectWidget<
   // they are used, so hacking them in via by spreading `extraProps` on the component to avoid typescript errors
   const extraProps = {
     name: id,
+    ...options,
   };
   return (
     <Select

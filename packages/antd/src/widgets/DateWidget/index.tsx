@@ -22,7 +22,7 @@ const DATE_PICKER_STYLE = {
 export default function DateWidget<T = any, S extends StrictRJSFSchema = RJSFSchema, F extends FormContextType = any>(
   props: WidgetProps<T, S, F>
 ) {
-  const { disabled, formContext, id, onBlur, onChange, onFocus, placeholder, readonly, value } = props;
+  const { disabled, formContext, id, onBlur, onChange, onFocus, placeholder, readonly, value, options } = props;
   const { readonlyAsDisabled = true } = formContext as GenericObjectType;
 
   const handleChange = (nextValue: any) => onChange(nextValue && nextValue.format('YYYY-MM-DD'));
@@ -47,6 +47,7 @@ export default function DateWidget<T = any, S extends StrictRJSFSchema = RJSFSch
       style={DATE_PICKER_STYLE}
       value={value && dayjs(value)}
       aria-describedby={ariaDescribedByIds<T>(id)}
+      {...options}
     />
   );
 }

@@ -41,6 +41,7 @@ export default function PasswordWidget<
       placeholder={placeholder}
       value={value || ''}
       aria-describedby={ariaDescribedByIds<T>(id)}
+      {...options}
     />
   );
 }
