@@ -34,6 +34,7 @@ export default function TextareaWidget<
   value,
 }: WidgetProps<T, S, F>) {
   const { readonlyAsDisabled = true } = formContext as GenericObjectType;
+  const { classNames: _classNames, ...restUIOptions } = options;
 
   const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>) =>
     onChange(target.value === '' ? options.emptyValue : target.value);
@@ -46,7 +47,7 @@ export default function TextareaWidget<
   // they are used, so hacking them in via by spreading `extraProps` on the component to avoid typescript errors
   const extraProps = {
     type: 'textarea',
-    ...options,
+    ...restUIOptions,
   };
 
   return (

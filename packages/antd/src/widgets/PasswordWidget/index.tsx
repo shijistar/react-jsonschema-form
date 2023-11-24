@@ -19,6 +19,7 @@ export default function PasswordWidget<
   F extends FormContextType = any
 >(props: WidgetProps<T, S, F>) {
   const { disabled, formContext, id, onBlur, onChange, onFocus, options, placeholder, readonly, value } = props;
+  const { classNames: _classNames, ...restUIOptions } = options;
   const { readonlyAsDisabled = true } = formContext as GenericObjectType;
 
   const emptyValue = options.emptyValue || '';
@@ -41,7 +42,7 @@ export default function PasswordWidget<
       placeholder={placeholder}
       value={value || ''}
       aria-describedby={ariaDescribedByIds<T>(id)}
-      {...options}
+      {...restUIOptions}
     />
   );
 }
