@@ -143,13 +143,11 @@ export default function ObjectFieldTemplate<
                   />
                 </Col>
               )}
-              {properties
-                .filter((e) => !e.hidden)
-                .map((element: ObjectFieldTemplatePropertyType) => (
-                  <Col key={element.name} span={calculateColSpan(element)}>
-                    {element.content}
-                  </Col>
-                ))}
+              {properties.map((element: ObjectFieldTemplatePropertyType) => (
+                <Col key={element.name} span={calculateColSpan(element)}>
+                  {element.content}
+                </Col>
+              ))}
             </Row>
 
             {canExpand(schema, uiSchema, formData) && (

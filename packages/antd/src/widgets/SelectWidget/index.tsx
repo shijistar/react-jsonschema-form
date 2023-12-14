@@ -40,7 +40,7 @@ export default function SelectWidget<
 }: WidgetProps<T, S, F>) {
   const { readonlyAsDisabled = true } = formContext as GenericObjectType;
 
-  const { enumOptions, enumDisabled, emptyValue } = options;
+  const { enumOptions, enumDisabled, emptyValue, ...otherOptions } = options;
 
   const handleChange = (nextValue: any) => onChange(enumOptionsValueForIndex<S>(nextValue, enumOptions, emptyValue));
 
@@ -49,9 +49,9 @@ export default function SelectWidget<
   const handleFocus = () => onFocus(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue));
 
   const filterOption = (input: string, option?: DefaultOptionType) => {
-    if (option && isString(option.label)) {
+    if (option && isString(option.children)) {
       // labels are strings in this context
-      return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+      return option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     }
     return false;
   };
@@ -63,8 +63,8 @@ export default function SelectWidget<
   // Antd's typescript definitions do not contain the following props that are actually necessary and, if provided,
   // they are used, so hacking them in via by spreading `extraProps` on the component to avoid typescript errors
   const extraProps = {
+    ...otherOptions,
     name: id,
-    ...options,
   };
   return (
     <Select
