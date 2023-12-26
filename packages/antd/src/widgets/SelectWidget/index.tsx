@@ -49,9 +49,12 @@ export default function SelectWidget<
   const handleFocus = () => onFocus(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue));
 
   const filterOption = (input: string, option?: DefaultOptionType) => {
-    if (option && isString(option.children)) {
-      // labels are strings in this context
-      return option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+    if (option) {
+      const label = option.label || option.children;
+      if (isString(label)) {
+        // labels are strings in this context
+        return label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+      }
     }
     return false;
   };
@@ -79,8 +82,8 @@ export default function SelectWidget<
       placeholder={placeholder}
       style={SELECT_STYLE}
       value={selectedIndexes}
-      {...extraProps}
       filterOption={filterOption}
+      {...extraProps}
       aria-describedby={ariaDescribedByIds<T>(id)}
       options={
         Array.isArray(enumOptions)
